@@ -15,8 +15,8 @@ import React,{
 } from 'react-native';
 
 import RouteHome from './routehome';
-/*import Message from  './view/message';
- import Discover from  './views/discover';
+import Message from  './views/message';
+/*import Discover from  './views/discover';
  import RouteMe from './views/routeme';*/
 
 let HOME_TAB = 'homeTab';
@@ -29,12 +29,12 @@ export default class MainPage extends Component {
         super();
         this.state = {
             selectedTab: HOME_TAB,
-            notifCount: 0,
+            notifCount: 1,
             presses: 0,
         };
     };
 
-    setTab(tabId) {
+    _setTab(tabId) {
         this.setState({selectedTab: tabId});
     }
 
@@ -60,7 +60,7 @@ export default class MainPage extends Component {
                 renderView = <RouteHome />
                 break;
             case MESSAGE_TAB:
-                //renderView = <Message />
+                renderView = <Message />
                 break;
             case DISCOVER_TAB:
                 //renderView = <Discover />
@@ -85,8 +85,16 @@ export default class MainPage extends Component {
                         title='首页'
                         icon={require('./images/icon_home_nor.png')}
                         selected={this.state.selectedTab === 'HOME_TAB'}
-                        onPress={()=>this.setTab(HOME_TAB)}>
+                        onPress={()=>this._setTab(HOME_TAB)}>
                         {this._renderContent(HOME_TAB)}
+                    </TabBarIOS.Item>
+                    <TabBarIOS.Item
+                        title='消息'
+                        icon={require('./images/icon_message_nor.png')}
+                        selected={this.state.selectedTab==='MESSAGE_TAB'}
+                        badge={this.state.notifCount>0?this.state.notifCount:undefined}
+                        onPress={()=>this._setTab(MESSAGE_TAB)}>
+                        {this._addNavigator(Message, '消息列表')}
                     </TabBarIOS.Item>
                 </TabBarIOS>
             </View>

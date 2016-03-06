@@ -4,12 +4,7 @@
 'use strict';
 
 import React,{
-    AppRegistry,
     Component,
-    StyleSheet,
-    Navigator,
-    Text,
-    View,
 } from 'react-native';
 
 import Home from './views/home';
