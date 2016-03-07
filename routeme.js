@@ -5,17 +5,26 @@
 
 import React,{
     Component,
-    View,
+    Navigator,
 } from 'react-native';
 
 import Me from './views/me';
 
 export default class RouteMe extends Component {
     render() {
+        let defaultName = 'Me';
+        let defaultComponent = Me;
         return (
-            <View>
-
-            </View>
+            <Navigator
+                initialRoute={{name:defaultName,component:defaultComponent}}
+                configureScene={()=>{
+                    return Navigator.SceneConfigs.HorizontalSwipeJumpFromRight;
+                }}
+                renderScene={(route,navigator)=>{
+                    let Component = route.component;
+                    return <Component {...route.params} navigator={navigator}/>;
+                }}
+            />
         )
     }
 }
