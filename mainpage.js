@@ -35,7 +35,8 @@ export default class MainPage extends Component {
     };
 
     _setTab(tabId) {
-        this.setState({selectedTab: tabId});
+        this.setState({selectedTab: tabId})
+        console.log(tabId);
     }
 
     _addNavigator(component, title) {
@@ -46,8 +47,8 @@ export default class MainPage extends Component {
         return (<NavigatorIOS
             style={{flex:1}}
             barTintColor='#FFF'
-            titleTextColor='#666'
-            tintColor='#666'
+            titleTextColor="#666"
+            tintColor="#666"
             translucent={false}
             initialRoute={{component:component,title:title,passProps:{data:data}}}
         />);
@@ -57,20 +58,16 @@ export default class MainPage extends Component {
         let renderView;
         switch (pageName) {
             case HOME_TAB:
-                renderView = <RouteHome />
+                renderView = <RouteHome />;
                 break;
             case MESSAGE_TAB:
-                renderView = <Message />
-                break;
-            case DISCOVER_TAB:
-                //renderView = <Discover />
-                break;
-            case ME_TAB:
-                //renderView = <RouteMe />
+                renderView = <Message />;
                 break;
             default:
                 break;
         }
+
+        console.log('_renderContent ' + pageName);
 
         return (<View style={styles.pageView}>{renderView}</View>)
     };
@@ -82,18 +79,18 @@ export default class MainPage extends Component {
                     tintColor='#11a984'
                     barTintColor='#FFF'>
                     <TabBarIOS.Item
-                        title='首页'
+                        title="首页"
                         icon={require('./images/icon_home_nor.png')}
-                        selected={this.state.selectedTab === 'HOME_TAB'}
-                        onPress={()=>this._setTab(HOME_TAB)}>
+                        selected={this.state.selectedTab === HOME_TAB}
+                        onPress={() => this._setTab(HOME_TAB)}>
                         {this._renderContent(HOME_TAB)}
                     </TabBarIOS.Item>
                     <TabBarIOS.Item
-                        title='消息'
+                        title="消息"
                         icon={require('./images/icon_message_nor.png')}
-                        selected={this.state.selectedTab==='MESSAGE_TAB'}
-                        badge={this.state.notifCount>0?this.state.notifCount:undefined}
-                        onPress={()=>this._setTab(MESSAGE_TAB)}>
+                        badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
+                        selected={this.state.selectedTab === MESSAGE_TAB}
+                        onPress={() => this._setTab(MESSAGE_TAB)}>
                         {this._addNavigator(Message, '消息列表')}
                     </TabBarIOS.Item>
                 </TabBarIOS>

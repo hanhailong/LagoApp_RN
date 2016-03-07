@@ -11,7 +11,7 @@ import React,{
 
 import MainPage from './mainpage';
 
-class SplashPage extends Component {
+export default class SplashPage extends Component {
     constructor(props) {
         super(props);
         var {navigator} = props;
@@ -38,5 +38,3 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
     },
 });
-
-export default SplashPage;
