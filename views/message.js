@@ -18,7 +18,7 @@ export default class Message extends Component {
     _itemPress() {
         AlertIOS.alert('coming soon', null, [{
             text: 'OK',
-            onPress: (text)=>console.log('确定'),
+            //onPress: (text)=>console.log('确定'),
             type: 'default'
         }])
     }
