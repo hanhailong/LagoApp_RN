@@ -17,7 +17,7 @@ import React,{
 import RouteHome from './routehome';
 import Message from  './views/message';
 import Discover from  './views/discover';
-/*import RouteMe from './views/routeme';*/
+import RouteMe from './routeme';
 
 let HOME_TAB = 'homeTab';
 let MESSAGE_TAB = 'messageTab';
@@ -28,7 +28,7 @@ export default class MainPage extends Component {
     constructor() {
         super();
         this.state = {
-            selectedTab: DISCOVER_TAB,
+            selectedTab: ME_TAB,
             notifCount: 1,
             presses: 0,
         };
@@ -66,6 +66,9 @@ export default class MainPage extends Component {
             case DISCOVER_TAB:
                 renderView = <Discover />;
                 break;
+            case ME_TAB:
+                renderView = <RouteMe />;
+                break;
             default:
                 break;
         }
@@ -102,6 +105,13 @@ export default class MainPage extends Component {
                         selected={this.state.selectedTab===DISCOVER_TAB}
                         onPress={()=>this._setTab(DISCOVER_TAB)}>
                         {this._addNavigator(Discover, '发现')}
+                    </TabBarIOS.Item>
+                    <TabBarIOS.Item
+                        title='我的'
+                        selected={this.state.selectedTab===ME_TAB}
+                        onPress={()=>this._setTab(ME_TAB)}
+                        icon={require('./images/icon_user_nor.png')}>
+                        {this._renderContent(ME_TAB)}
                     </TabBarIOS.Item>
                 </TabBarIOS>
             </View>

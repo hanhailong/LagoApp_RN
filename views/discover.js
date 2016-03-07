@@ -61,7 +61,7 @@ export default class Discover extends Component {
 
         return (
             <ScrollView style={{backgroundColor:'#EEE'}}>
-
+                {/*<Swiper></Swiper>*/}
                 <View style={styles.slide}>
                     <Image source={require('../images/job1.jpg')} style={styles.backgroundImage}>
                         <Text style={styles.swipeText}>2016，只愿带你发现更多</Text>
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     wrapper: {},
     slide: {
         flex: 1,
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     swipeText: {
         color: '#fff',
