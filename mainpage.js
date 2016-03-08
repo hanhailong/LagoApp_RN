@@ -73,8 +73,6 @@ export default class MainPage extends Component {
                 break;
         }
 
-        console.log('_renderContent ' + pageName);
-
         return (<View style={styles.pageView}>{renderView}</View>)
     };
 
