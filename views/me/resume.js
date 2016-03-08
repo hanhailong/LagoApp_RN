@@ -29,7 +29,7 @@ export default class Resume extends Component {
         return (
             <View style={{flex: 1}}>
                 <View style={styles.caption_wrapper}>
-                    <TouchableOpacity onPress={this._pressButton.bind(this)}>
+                    <TouchableOpacity onPress={(e)=>this._pressButton(e)}>
                         <Image source={require('../../images/icon_back.png')} style={styles.back_img}/>
                     </TouchableOpacity>
                     <Text style={styles.caption_text}>{this.props.title}</Text>

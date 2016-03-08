@@ -30,29 +30,28 @@ let _renderPagination = function (index, total, context) {
 };
 
 export default class Discover extends Component {
-    state = {
-        dataSource: new ListView.DataSource({rowHasChanged: (r1, r2)=>r1 !== r2})
-            .cloneWithRows(this._genRows({}))
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            dataSource: new ListView.DataSource({rowHasChanged: (r1, r2)=>r1 !== r2})
+                .cloneWithRows(this._genRows({}))
+        };
+    }
 
     _selectDiscover(discover) {
-        if (Platform.OS === 'ios') {
-            this.props.navigator.push({
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({
                 title: discover.title,
                 component: DiscoverDetail,
                 passProps: {discover}
             });
-        } else {
-            //Android
         }
     }
 
     _renderRow(discoverData) {
         return (
-            <DiscoverCell
-                onSelect={() => {
-                this._selectDiscover(discoverData);}}
-                discoverData={discoverData} />
+            <DiscoverCell onSelect={() => this._selectDiscover()} discoverData={discoverData}/>
         );
     }
 
@@ -67,7 +66,6 @@ export default class Discover extends Component {
                 renderRow={this._renderRow}
                 style={styles.listView}>
             </ListView>;
-
 
         return (
             <ScrollView style={{backgroundColor:'#EEE'}}>

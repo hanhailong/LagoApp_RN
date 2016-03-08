@@ -12,6 +12,11 @@ import React,{
 } from 'react-native';
 
 export default class DiscoverDetail extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {title: null};
+    }
+
     render() {
         let discoverObj = this.props.discover;
         return (

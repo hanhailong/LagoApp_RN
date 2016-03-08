@@ -28,7 +28,7 @@ export default class MainPage extends Component {
     constructor() {
         super();
         this.state = {
-            selectedTab: ME_TAB,
+            selectedTab: HOME_TAB,
             notifCount: 1,
             presses: 0,
         };

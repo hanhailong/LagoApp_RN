@@ -12,6 +12,10 @@ import React,{
     View
 } from 'react-native';
 
+import JobCell from './home/job-cell';
+import JobDetail from './home/job-detail';
+import JobData from './home/job-data';
+
 class SearchBar extends Component {
     render() {
         return (
@@ -53,21 +57,20 @@ export default class Home extends Component {
     _selectJob(job:Object) {
         let {navigator}=this.props;
         if (navigator) {
-            /*navigator.push({
-             name: 'JobDetail',
-             component: JobDetail,
-             params: {job: job}
-             });*/
+            navigator.push({
+                name: 'JobDetail',
+                component: JobDetail,
+                params: {job: job}
+            });
         }
     }
 
-    _renderRow(jobData:Object, sectionID:number, rowID:number) {
-        return (<View />);
+    _renderRow(jobData) {
+        return (<JobCell onSelect={() => this._selectJob(jobData)} jobData={jobData}/>);
     }
 
     _genRows():Array<string> {
-        return ['a', 'b', 'c'];
-        //return JobList;
+        return JobData;
     }
 
     render() {
