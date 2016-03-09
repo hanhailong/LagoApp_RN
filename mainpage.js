@@ -96,7 +96,9 @@ const styles = StyleSheet.create({
     tabNav: {
         height: 60,
         backgroundColor: '#FFF',
-        alignItems: 'center'
+        alignItems: 'center',
+        borderTopWidth:0.5,
+        borderTopColor:'#E8E8E8'
     },
     selectedTitleStyle: {
         color: '#11A984'

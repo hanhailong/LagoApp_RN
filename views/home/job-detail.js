@@ -32,7 +32,7 @@ export default class JobDetail extends Component {
         return (
             <View style={{flex: 1}}>
                 <View style={{padding: 10,marginTop:20,justifyContent: 'center',alignItems: 'center',flexDirection:'row'}}>
-                    <TouchableOpacity onPress={this._pressButton.bind(this)}>
+                    <TouchableOpacity onPress={()=>this._pressButton()}>
                         <Image source={require('../../images/icon_back.png')} style={{width:30,height:30}}/>
                     </TouchableOpacity>
                     <Text style={{fontSize:17,flex:1,textAlign:'center',marginRight:30}}>职位详情</Text>

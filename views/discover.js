@@ -40,7 +40,7 @@ export default class Discover extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataSource: new ListView.DataSource({rowHasChanged: (r1, r2)=>r1 !== r2})
+            listSource: new ListView.DataSource({rowHasChanged: (r1, r2)=>r1 !== r2})
                 .cloneWithRows(this._genRows({})),
             pagerSource: new ViewPager.DataSource({pageHasChanged: (p1, p2)=>p1 !== p2})
                 .cloneWithPages(BANNER_IMGS)
@@ -75,7 +75,7 @@ export default class Discover extends Component {
     render() {
         let resultList =
             <ListView
-                dataSource={this.state.dataSource}
+                dataSource={this.state.listSource}
                 renderRow={this._renderRow}
                 style={styles.listView}>
             </ListView>;

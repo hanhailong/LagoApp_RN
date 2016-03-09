@@ -7,6 +7,7 @@ import React,{
     Component,
     StyleSheet,
     ListView,
+    Platform,
     Image,
     Text,
     View
@@ -20,10 +21,10 @@ class SearchBar extends Component {
     render() {
         return (
             <View style={styles.searchBar}>
-                <Text style={{color:'#FFFFFF', fontSize:20}}>拉勾</Text>
+                <Text style={{color:'#FFF', fontSize:20}}>拉勾</Text>
                 <View style={styles.searchInput}>
                     <Image source={require('../images/icon_search.png')} style={{width:15,height:15,marginRight:8}}/>
-                    <Text style={{color:'#14ba91',fontSize:13}}>输入职位名或公司名</Text>
+                    <Text style={{color:'#14BA91',fontSize:13}}>输入职位名或公司名</Text>
                 </View>
             </View>
         );
@@ -33,7 +34,7 @@ class SearchBar extends Component {
 let _listHeader = function (index, total, context) {
     return (
         <View style={styles.headerBody}>
-            <Image source={{width:52,height:50}} source={require('../images/icon_find_ok.png')}/>
+            <Image style={{width:52,height:50}} source={require('../images/icon_find_ok.png')}/>
             <View style={{paddingLeft:20}}>
                 <Text style={{fontSize:18}}>可<Text style={{color:'#11A984'}}>直接沟通</Text>的职位推荐</Text>
                 <Text style={{marginTop:15,fontSize:13,color:'#999'}}>来和老板直接聊offer吧</Text>
@@ -80,8 +81,10 @@ export default class Home extends Component {
             renderRow={this._renderRow}
             renderHeader={_listHeader}/>;
 
+        let top20 = {marginTop: 0};
+
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, top20]}>
                 <SearchBar />
                 {resultList}
             </View>
@@ -116,9 +119,9 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     container: {
+        top: Platform.OS === 'android' ? 0 : 20,
         flex: 1,
-        marginTop: 20,
         backgroundColor: '#EEE',
-        paddingBottom: 11,
+        paddingBottom: 10,
     },
 });

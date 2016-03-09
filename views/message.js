@@ -4,6 +4,7 @@
 'use strict';
 
 import React,{
+    Alert,
     Component,
     StyleSheet,
     ScrollView,
@@ -15,11 +16,7 @@ import React,{
 
 export default class Message extends Component {
     _itemPress() {
-        /*AlertIOS.alert('coming soon', null, [{
-            text: 'OK',
-            //onPress: (text)=>console.log('确定'),
-            type: 'default'
-        }])*/
+        Alert.alert( '提示', '正在开发中...', [ {text: '确定', onPress: () => console.log('OK Pressed!')} ])
     }
 
     render() {
@@ -28,7 +25,7 @@ export default class Message extends Component {
             <View style={styles.container}>
                 <ScrollView>
                     <TouchableHighlight
-                        onPress={this._itemPress.bind(this)}
+                        onPress={() => this._itemPress()}
                         underlayColor={UNDERLAY_COLOR}>
                         <View>
                             <View style={styles.item_container}>
@@ -41,7 +38,9 @@ export default class Message extends Component {
                             <View style={styles.separator}/>
                         </View>
                     </TouchableHighlight>
-                    <TouchableHighlight underlayColor={UNDERLAY_COLOR} onPress={this._itemPress.bind(this)}>
+                    <TouchableHighlight
+                        underlayColor={UNDERLAY_COLOR}
+                        onPress={() => this._itemPress()}>
                         <View>
                             <View style={styles.item_container}>
                                 <Image style={styles.thumb} source={require('../images/icon_user_info_mail.png')}/>
@@ -53,7 +52,9 @@ export default class Message extends Component {
                             <View style={styles.separator}/>
                         </View>
                     </TouchableHighlight>
-                    <TouchableHighlight underlayColor={UNDERLAY_COLOR} onPress={this._itemPress.bind(this)}>
+                    <TouchableHighlight
+                        underlayColor={UNDERLAY_COLOR}
+                        onPress={() => this._itemPress()}>
                         <View>
                             <View style={styles.item_container}>
                                 <Image style={styles.thumb} source={require('../images/icon_user_info_work.png')}/>
