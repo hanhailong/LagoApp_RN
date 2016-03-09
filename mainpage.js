@@ -72,7 +72,7 @@ export default class MainPage extends Component {
             default:
                 break;
         }
-        return (<View style={styles.pageView}>{renderView}</View>)
+        return (<View style={styles.container}>{renderView}</View>)
     }
 
     render() {
@@ -91,7 +91,7 @@ export default class MainPage extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 1
     },
     tabNav: {
         height: 60,
@@ -101,12 +101,9 @@ const styles = StyleSheet.create({
     selectedTitleStyle: {
         color: '#11A984'
     },
-    pageView: {
-        flex: 1,
-    },
     tabIcon: {
         width: 30,
         height: 30,
         resizeMode: 'cover'
-    },
+    }
 });

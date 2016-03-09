@@ -14,10 +14,17 @@ import React,{
     View
 } from 'react-native';
 
-import Swiper from 'react-native-swiper';
+import ViewPager from 'react-native-viewpager';
 import DiscoverCell  from './discover/discover-cell';
 import DiscoverDetail from './discover/discover-detail';
 import DiscoverData from './discover/discover-data';
+
+let BANNER_IMGS = [
+    require('../images/job1.jpg'),
+    require('../images/job2.jpg'),
+    require('../images/job3.jpg'),
+    require('../images/job4.jpg')
+];
 
 let _renderPagination = function (index, total, context) {
     return (
@@ -34,7 +41,9 @@ export default class Discover extends Component {
         super(props);
         this.state = {
             dataSource: new ListView.DataSource({rowHasChanged: (r1, r2)=>r1 !== r2})
-                .cloneWithRows(this._genRows({}))
+                .cloneWithRows(this._genRows({})),
+            pagerSource: new ViewPager.DataSource({pageHasChanged: (p1, p2)=>p1 !== p2})
+                .cloneWithPages(BANNER_IMGS)
         };
     }
 
@@ -59,6 +68,10 @@ export default class Discover extends Component {
         return DiscoverData;
     }
 
+    _renderPage(data){
+        return(<Image source={data} style={styles.page} />)
+    }
+
     render() {
         let resultList =
             <ListView
@@ -69,34 +82,12 @@ export default class Discover extends Component {
 
         return (
             <ScrollView style={{backgroundColor:'#EEE'}}>
-                <Swiper
-                    horizontal={true}
-                    height={180}
-                    autoplayTimeout={3}
-                    autoplay={true}
-                    index={0}
-                    renderPagination={_renderPagination}>
-                    <View style={styles.slide}>
-                        <Image source={require('../images/job1.jpg')} style={styles.backgroundImage}>
-                            <Text style={styles.swipeText}>2016，只愿带你发现更多</Text>
-                        </Image>
-                    </View>
-                    <View style={styles.slide}>
-                        <Image source={require('../images/job2.jpg')} style={styles.backgroundImage}>
-                            <Text style={styles.swipeText}>12张图掌握2016最好玩的景点</Text>
-                        </Image>
-                    </View>
-                    <View style={styles.slide}>
-                        <Image source={require('../images/job3.jpg')} style={styles.backgroundImage}>
-                            <Text style={styles.swipeText}>年轻人不能错过这5家“小而美”的酒店</Text>
-                        </Image>
-                    </View>
-                    <View style={styles.slide}>
-                        <Image source={require('../images/job4.jpg')} style={styles.backgroundImage}>
-                            <Text style={styles.swipeText}>智能硬件行业的5个酒店 最值得你抱大腿</Text>
-                        </Image>
-                    </View>
-                </Swiper>
+                <ViewPager
+                    style={{height:130}}
+                    renderPage={this._renderPage}
+                    isLoop={true}
+                    autoPlay={true}
+                    dataSource={this.state.pagerSource}/>
                 {resultList}
             </ScrollView>
         );

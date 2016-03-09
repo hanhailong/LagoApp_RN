@@ -47,7 +47,7 @@ export default class Home extends Component {
     constructor() {
         super();
         this.state = {
-            dataSource: new ListView.DataSource({rowHasChanged: (r1, r2)=>r1 !== r2})
+            listSource: new ListView.DataSource({rowHasChanged: (r1, r2)=>r1 !== r2})
                 .cloneWithRows(this._genRows({}))
         };
         // 必须绑定，否则onPress报错
@@ -76,7 +76,7 @@ export default class Home extends Component {
     render() {
         let resultList = <ListView
             automaticallyAdjustContentInsets={false}
-            dataSource={this.state.dataSource}
+            dataSource={this.state.listSource}
             renderRow={this._renderRow}
             renderHeader={_listHeader}/>;
 
