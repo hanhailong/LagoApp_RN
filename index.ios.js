@@ -9,27 +9,27 @@ import React, {
     Navigator,
 } from 'react-native';
 
-import SplashPage from './splash';
+import SplashScreen from './splash';
 import MainPage from './mainpage';
 
 class LagouApp extends Component {
-  render() {
-    var defaultName = 'Splash';
-    var defaultComponent = SplashPage;
+    render() {
+        var defaultName = 'Splash';
+        var defaultComponent = SplashScreen;
 
-    return (
-        <Navigator
-            initialRoute={{ name: defaultName, component: defaultComponent }}
-            configureScene={(route) => {
-                return Navigator.SceneConfigs.HorizontalSwipeJumpFromRight;
-            }}
-            renderScene={(route, navigator) => {
-                let Component = route.component;
-                return <Component {...route.params} navigator={navigator} />
-            }}
-        />
-    );
-  }
+        return (
+            <Navigator
+                initialRoute={{ name: defaultName, component: defaultComponent }}
+                configureScene={(route) => {
+                    return Navigator.SceneConfigs.HorizontalSwipeJumpFromRight;
+                }}
+                renderScene={(route, navigator) => {
+                    let Component = route.component;
+                    return <Component {...route.params} navigator={navigator} />
+                }}
+            />
+        );
+    }
 }
 
 AppRegistry.registerComponent('LagouApp', () => LagouApp);

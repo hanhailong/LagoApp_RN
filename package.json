@@ -8,8 +8,8 @@
   "dependencies": {
     "react-native": "^0.21.0",
     "react-native-swiper": "^1.4.3",
-    "react-native-tab-navigator": "^0.2.15",
-    "react-native-vector-icons": "^1.1.1",
+    "react-native-tab-navigator": "^0.2.17",
+    "react-native-viewpager": "^0.2.1",
     "react-timer-mixin": "^0.13.3"
   }
 }

@@ -1,62 +1,62 @@
 /**
- * Created by kenny on 16/3/4.
+ * Created by kenny on 16/3/9.
  */
 'use strict';
 
 import React,{
     Component,
+    Image,
     View,
     StyleSheet,
-    Image,
     Text,
-    TabBarIOS,
-    Navigator,
-    NavigatorIOS,
 } from 'react-native';
 
+let HOME_TAB = 'homeTab';
+let HOME_NORMAL = require('./images/icon_home_nor.png');
+let HOME_PRESS = require('./images/icon_home_pre.png');
+
+let MESSAGE_TAB = 'messageTab';
+let MESSAGE_NORMAL = require('./images/icon_message_nor.png');
+let MESSAGE_PRESS = require('./images/icon_message_pre.png');
+
+let DISCOVER_TAB = 'discoverTab';
+let DISCOVER_NORMAL = require('./images/icon_find_nor.png');
+let DISCOVER_PRESS = require('./images/icon_find_pre.png');
+
+let ME_TAB = 'meTab';
+let ME_NORMAL = require('./images/icon_user_nor.png');
+let ME_PRESS = require('./images/icon_user_pre.png');
+
+import TabNavigator from 'react-native-tab-navigator';
 import RouteHome from './routehome';
-import Message from  './views/message';
+import Message from './views/message';
 import Discover from  './views/discover';
 import RouteMe from './routeme';
 
-let HOME_TAB = 'homeTab';
-let MESSAGE_TAB = 'messageTab';
-let DISCOVER_TAB = 'discoverTab';
-let ME_TAB = 'meTab';
-
 export default class MainPage extends Component {
-    constructor() {
-        super();
-        this.state = {
-            selectedTab: HOME_TAB,
-            notifCount: 1,
-            presses: 0,
-        };
-    };
-
-    _setTab(tabId) {
-        this.setState({selectedTab: tabId})
-        console.log(tabId);
+    constructor(props) {
+        super(props);
+        this.state = {selectedTab: HOME_TAB}
     }
 
-    _addNavigator(component, title) {
-        let data = null;
-        if (title === '首页') {
-            data = this.state.data;
-        }
-        return (<NavigatorIOS
-            style={{flex:1}}
-            barTintColor='#FFF'
-            titleTextColor="#666"
-            tintColor="#666"
-            translucent={false}
-            initialRoute={{component:component,title:title,passProps:{data:data}}}
-        />);
-    };
+    _renderTabItem(img, selectedImg, tag, title, badgeCount, childView) {
+        return (
+            <TabNavigator.Item
+                selected={this.state.selectedTab===tag}
+                renderIcon={()=><Image style={styles.tabIcon} source={img}/>}
+                title={title}
+                selectedTitleStyle={styles.selectedTitleStyle}
+                badgeText={badgeCount}
+                renderSelectedIcon={()=><Image style={styles.tabIcon} source={selectedImg}/>}
+                onPress={()=>this.setState({selectedTab:tag})}>
+                {childView}
+            </TabNavigator.Item>
+        );
+    }
 
-    _renderContent(pageName:string, num:number) {
+    _createChildView(tag) {
         let renderView;
-        switch (pageName) {
+        switch (tag) {
             case HOME_TAB:
                 renderView = <RouteHome />;
                 break;
@@ -72,48 +72,20 @@ export default class MainPage extends Component {
             default:
                 break;
         }
-
         return (<View style={styles.pageView}>{renderView}</View>)
-    };
+    }
 
     render() {
         return (
             <View style={styles.container}>
-                <TabBarIOS
-                    tintColor='#11a984'
-                    barTintColor='#FFF'>
-                    <TabBarIOS.Item
-                        title="首页"
-                        icon={require('./images/icon_home_nor.png')}
-                        selected={this.state.selectedTab === HOME_TAB}
-                        onPress={() => this._setTab(HOME_TAB)}>
-                        {this._renderContent(HOME_TAB)}
-                    </TabBarIOS.Item>
-                    <TabBarIOS.Item
-                        title="消息"
-                        icon={require('./images/icon_message_nor.png')}
-                        badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
-                        selected={this.state.selectedTab === MESSAGE_TAB}
-                        onPress={() => this._setTab(MESSAGE_TAB)}>
-                        {this._addNavigator(Message, '消息列表')}
-                    </TabBarIOS.Item>
-                    <TabBarIOS.Item
-                        title="发现"
-                        icon={require('./images/icon_find_nor.png')}
-                        selected={this.state.selectedTab===DISCOVER_TAB}
-                        onPress={()=>this._setTab(DISCOVER_TAB)}>
-                        {this._addNavigator(Discover, '发现')}
-                    </TabBarIOS.Item>
-                    <TabBarIOS.Item
-                        title='我的'
-                        selected={this.state.selectedTab===ME_TAB}
-                        onPress={()=>this._setTab(ME_TAB)}
-                        icon={require('./images/icon_user_nor.png')}>
-                        {this._renderContent(ME_TAB)}
-                    </TabBarIOS.Item>
-                </TabBarIOS>
+                <TabNavigator hidesTabTouch={true} tabBarStyle={styles.tabNav}>
+                    {this._renderTabItem(HOME_NORMAL, HOME_PRESS, HOME_TAB, '首页', 0, this._createChildView(HOME_TAB))}
+                    {this._renderTabItem(MESSAGE_NORMAL, MESSAGE_PRESS, MESSAGE_TAB, '消息', 1, this._createChildView(MESSAGE_TAB))}
+                    {this._renderTabItem(DISCOVER_NORMAL, DISCOVER_PRESS, DISCOVER_TAB, '发现', 0, this._createChildView(DISCOVER_TAB))}
+                    {this._renderTabItem(ME_NORMAL, ME_PRESS, ME_TAB, '我的', 0, this._createChildView(ME_TAB))}
+                </TabNavigator>
             </View>
-        );
+        )
     }
 }
 
@@ -121,14 +93,20 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    tabNav: {
+        height: 60,
+        backgroundColor: '#FFF',
+        alignItems: 'center'
+    },
+    selectedTitleStyle: {
+        color: '#11A984'
+    },
     pageView: {
         flex: 1,
     },
-    tabContent: {
-        flex: 1,
-        alignItems: 'center',
+    tabIcon: {
+        width: 30,
+        height: 30,
+        resizeMode: 'cover'
     },
-    tabText: {
-        margin: 50,
-    }
 });

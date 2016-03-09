@@ -11,7 +11,7 @@ import React,{
 
 import MainPage from './mainpage';
 
-export default class SplashPage extends Component {
+export default class SplashScreen extends Component {
     constructor(props) {
         super(props);
         var {navigator} = props;

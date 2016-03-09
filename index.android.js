@@ -9,13 +9,13 @@ import React, {
     Navigator,
 } from 'react-native';
 
-import SplashPage from './splash';
+import SplashScreen from './splash';
 import MainPage from './mainpage';
 
 class LagouApp extends Component {
     render() {
         var defaultName = 'Splash';
-        var defaultComponent = SplashPage;
+        var defaultComponent = SplashScreen;
 
         return (
             <Navigator
