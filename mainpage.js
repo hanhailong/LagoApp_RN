@@ -7,6 +7,7 @@ import React,{
     Component,
     Image,
     View,
+    Platform,
     StyleSheet,
     Text,
 } from 'react-native';
@@ -36,7 +37,18 @@ import RouteMe from './routeme';
 export default class MainPage extends Component {
     constructor(props) {
         super(props);
-        this.state = {selectedTab: HOME_TAB}
+        this.state = {selectedTab: MESSAGE_TAB}
+    }
+
+    _renderBadge(badgeCount) {
+        if (!badgeCount) {
+            return null;
+        }
+        return (
+            <Image style={styles.badgeBg} source={require('./images/message_num_bg.png')}>
+                <Text style={styles.badgeText}>{badgeCount}</Text>
+            </Image>
+        );
     }
 
     _renderTabItem(img, selectedImg, tag, title, badgeCount, childView) {
@@ -46,7 +58,7 @@ export default class MainPage extends Component {
                 renderIcon={()=><Image style={styles.tabIcon} source={img}/>}
                 title={title}
                 selectedTitleStyle={styles.selectedTitleStyle}
-                badgeText={badgeCount}
+                renderBadge={()=>this._renderBadge(badgeCount)}
                 renderSelectedIcon={()=><Image style={styles.tabIcon} source={selectedImg}/>}
                 onPress={()=>this.setState({selectedTab:tag})}>
                 {childView}
@@ -97,15 +109,26 @@ const styles = StyleSheet.create({
         height: 60,
         backgroundColor: '#FFF',
         alignItems: 'center',
-        borderTopWidth:0.5,
-        borderTopColor:'#E8E8E8'
+        borderTopWidth: 0.5,
+        borderTopColor: '#E8E8E8'
     },
     selectedTitleStyle: {
         color: '#11A984'
     },
+    badgeBg: {
+        width: 14,
+        height: 14,
+        marginTop: 6
+    },
+    badgeText: {
+        color: '#FFF',
+        textAlign: 'center',
+        fontSize: 10,
+        backgroundColor: Platform.OS === 'android' ? null : 'transparent'
+    },
     tabIcon: {
-        width: 30,
         height: 30,
+        width: 30,
         resizeMode: 'cover'
     }
 });

@@ -4,6 +4,7 @@
 'use strict';
 import React,{
     Component,
+    Platform,
     ScrollView,
     StyleSheet,
     Image,
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: null,
         height: null,
-        backgroundColor: 'transparent',
+        backgroundColor: Platform.OS === 'android' ? null : 'transparent',
         resizeMode: 'contain',
         marginTop: 25,
         marginBottom: 35

@@ -6,6 +6,7 @@
 import React,{
     Alert,
     Component,
+    Platform,
     StyleSheet,
     ScrollView,
     TouchableHighlight,
@@ -74,7 +75,9 @@ export default class Message extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        top: Platform.OS === 'android' ? 0 : 20,
+        flex: 1,
+        backgroundColor: '#EEE'
     },
     thumb: {
         width: 50,

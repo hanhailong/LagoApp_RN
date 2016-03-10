@@ -5,9 +5,9 @@
 
 import React,{
     Component,
+    Platform,
     StyleSheet,
     ListView,
-    Platform,
     Image,
     Text,
     View

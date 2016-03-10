@@ -6,6 +6,7 @@ import React,{
     Component,
     StyleSheet,
     View,
+    Platform,
     TouchableHighlight,
     Text,
     Image,
@@ -60,8 +61,8 @@ const styles = StyleSheet.create({
     discoverTitle: {
         flex: 1, fontSize: 12, color: '#999'
     },
-    dateInfo:{
-        fontSize:12,color: '#999'
+    dateInfo: {
+        fontSize: 12, color: '#999'
     },
     separator: {
         height: 1,
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: null,
         height: null,
-        backgroundColor: 'transparent',
+        backgroundColor: Platform.OS === 'android' ? null : 'transparent',
         resizeMode: 'cover'
     },
     companyTag: {

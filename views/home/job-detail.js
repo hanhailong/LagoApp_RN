@@ -20,15 +20,14 @@ export default class JobDetail extends Component {
     }
 
     _pressButton(){
-        const { navigator } = this.props;
+        let { navigator } = this.props;
         if(navigator) {
             navigator.pop();
         }
     }
 
     render() {
-        const { job } = this.props;
-
+        let { job } = this.props;
         return (
             <View style={{flex: 1}}>
                 <View style={{padding: 10,marginTop:20,justifyContent: 'center',alignItems: 'center',flexDirection:'row'}}>
@@ -48,14 +47,4 @@ export default class JobDetail extends Component {
             </View>
         );
     }
-
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-});

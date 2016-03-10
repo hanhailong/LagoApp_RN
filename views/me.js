@@ -5,6 +5,7 @@
 
 import React,{
     Component,
+    Platform,
     View,
     Text,
     StyleSheet,
@@ -102,11 +103,13 @@ export default class Me extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        top: Platform.OS === 'android' ? 0 : 20,
+        flex: 1,
+        backgroundColor: '#EEE'
     },
-    icon_container:{
-        padding:10,
-        flexDirection:'row'
+    icon_container: {
+        padding: 10,
+        flexDirection: 'row'
     },
     icon_text: {
         fontSize: 16,
@@ -134,7 +137,7 @@ const styles = StyleSheet.create({
     backgroundImage: {
         alignItems: 'center',
         flex: 1,
-        resizeMode: 'stretch',
+        resizeMode: 'cover',
         width: null,
         height: null,
         justifyContent: 'center',

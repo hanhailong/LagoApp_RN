@@ -5,10 +5,10 @@
 
 import React,{
     Component,
+    Platform,
     StyleSheet,
     ScrollView,
     ListView,
-    Platform,
     Image,
     Text,
     View
@@ -81,7 +81,7 @@ export default class Discover extends Component {
             </ListView>;
 
         return (
-            <ScrollView style={{backgroundColor:'#EEE'}}>
+            <ScrollView style={styles.container}>
                 <ViewPager
                     style={{height:130}}
                     renderPage={this._renderPage}
@@ -95,6 +95,11 @@ export default class Discover extends Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        top: Platform.OS === 'android' ? 0 : 20,
+        flex: 1,
+        backgroundColor: '#EEE'
+    },
     pagination_wrapper: {
         position: 'absolute',
         bottom: 20,

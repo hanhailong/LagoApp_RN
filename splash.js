@@ -5,6 +5,7 @@
 
 import React,{
     Component,
+    Platform,
     StyleSheet,
     Image,
 } from 'react-native';
@@ -34,7 +35,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: null,
         height: null,
-        backgroundColor: 'transparent',
         resizeMode: 'cover',
     },
 });

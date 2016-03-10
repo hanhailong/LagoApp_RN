@@ -19,7 +19,7 @@ export default class JobCell extends Component {
     }
 
     render() {
-        const {jobData} = this.props;
+        let {jobData} = this.props;
         return (
             <TouchableHighlight
                 onPress={this.props.onSelect}
