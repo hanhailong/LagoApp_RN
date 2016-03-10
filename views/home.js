@@ -81,10 +81,8 @@ export default class Home extends Component {
             renderRow={this._renderRow}
             renderHeader={_listHeader}/>;
 
-        let top20 = {marginTop: 0};
-
         return (
-            <View style={[styles.container, top20]}>
+            <View style={styles.container}>
                 <SearchBar />
                 {resultList}
             </View>
@@ -98,13 +96,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 10,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     headerBody: {
         padding: 20,
         backgroundColor: '#FFF',
         marginBottom: 15,
-        flexDirection: 'row',
+        flexDirection: 'row'
     },
     searchInput: {
         borderRadius: 15,
@@ -116,12 +114,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
-        flex: 1,
+        flex: 1
     },
     container: {
         top: Platform.OS === 'android' ? 0 : 20,
         flex: 1,
         backgroundColor: '#EEE',
-        paddingBottom: 10,
-    },
+        paddingBottom: 10
+    }
 });

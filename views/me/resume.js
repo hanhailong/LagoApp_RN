@@ -18,18 +18,34 @@ export default class Resume extends Component {
         this.state = {title: null};
     }
 
-    _pressButton() {
-        const { navigator } = this.props;
-        if (navigator) {
-            navigator.pop();
+    componentWillMount() {
+        if (React.Platform.OS === 'android') {
+            React.BackAndroid.addEventListener('hardwareBackPress', ()=>this._pressButton());
         }
     }
+
+    componentWillUnmount() {
+        if (React.Platform.OS === 'android') {
+            React.BackAndroid.removeEventListener('hardwareBackPress', ()=>this._pressButton());
+        }
+    }
+
+    _pressButton() {
+        const {navigator} = this.props;
+        const routers = navigator.getCurrentRoutes();
+        console.log(routers);
+        if (routers.length > 1) {
+            navigator.pop();
+            return true;
+        }
+        return false;
+    };
 
     render() {
         return (
             <View style={{flex: 1}}>
                 <View style={styles.caption_wrapper}>
-                    <TouchableOpacity onPress={(e)=>this._pressButton(e)}>
+                    <TouchableOpacity onPress={() => this._pressButton()}>
                         <Image source={require('../../images/icon_back.png')} style={styles.back_img}/>
                     </TouchableOpacity>
                     <Text style={styles.caption_text}>{this.props.title}</Text>

@@ -19,12 +19,27 @@ export default class JobDetail extends Component {
         this.state = {job: null};
     }
 
-    _pressButton(){
-        let { navigator } = this.props;
-        if(navigator) {
-            navigator.pop();
+    componentWillMount() {
+        if (React.Platform.OS === 'android') {
+            React.BackAndroid.addEventListener('hardwareBackPress', ()=>this._pressButton());
         }
     }
+
+    componentWillUnmount() {
+        if (React.Platform.OS === 'android') {
+            React.BackAndroid.removeEventListener('hardwareBackPress', ()=>this._pressButton());
+        }
+    }
+
+    _pressButton() {
+        const {navigator} = this.props;
+        const routers = navigator.getCurrentRoutes();
+        if (routers.length > 1) {
+            navigator.pop();
+            return true;
+        }
+        return false;
+    };
 
     render() {
         let { job } = this.props;
