@@ -13,11 +13,6 @@ import React,{
 } from 'react-native';
 
 export default class DiscoverDetail extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {title: null};
-    }
-
     render() {
         let discoverObj = this.props.discover;
         return (
@@ -29,9 +24,7 @@ export default class DiscoverDetail extends Component {
                     <View style={{height: 180}}>
                         <Image style={styles.largeImage} source={{uri: discoverObj.logo}}/>
                     </View>
-                    <Text style={{color:'#999',lineHeight:25}}>
-                        {discoverObj.content}
-                    </Text>
+                    <Text style={{color:'#999',lineHeight:25}}>{discoverObj.content}</Text>
                 </View>
             </ScrollView>
         )

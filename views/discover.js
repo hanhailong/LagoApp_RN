@@ -60,7 +60,7 @@ export default class Discover extends Component {
 
     _renderRow(discoverData) {
         return (
-            <DiscoverCell onSelect={() => this._selectDiscover()} discoverData={discoverData}/>
+            <DiscoverCell onSelect={() => this._selectDiscover(discoverData)} discoverData={discoverData}/>
         );
     }
 

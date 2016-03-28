@@ -43,6 +43,7 @@ export default class DiscoverCell extends Component {
                 </View>
             </View>
         }
+
         return (
             <TouchableHighlight
                 onPress={this.props.onSelect}

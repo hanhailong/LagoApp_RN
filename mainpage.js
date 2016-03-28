@@ -37,7 +37,7 @@ import RouteMe from './routeme';
 export default class MainPage extends Component {
     constructor(props) {
         super(props);
-        this.state = {selectedTab: MESSAGE_TAB}
+        this.state = {selectedTab: HOME_TAB}
     }
 
     _renderBadge(badgeCount) {
