@@ -9,14 +9,14 @@ import React,{
     Image,
 } from 'react-native';
 
-import MainPage from './mainpage';
+import FramePage from './framepage';
 
 export default class SplashScreen extends Component {
     constructor(props) {
         super(props);
         var {navigator} = props;
         setTimeout(()=> {
-            navigator.replace({name: 'MainPage', component: MainPage})
+            navigator.replace({name: 'FramePage', component: FramePage})
         }, 1000);
     }
 

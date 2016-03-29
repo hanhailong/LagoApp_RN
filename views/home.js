@@ -56,7 +56,7 @@ export default class Home extends Component {
     }
 
     _selectJob(job:Object) {
-        let {navigator}=this.props;
+        let {navigator} = this.props;
         if (navigator) {
             navigator.push({
                 name: 'JobDetail',

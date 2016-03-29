@@ -3,7 +3,7 @@
  */
 'use strict';
 
-import React,{
+import React, {
     Component,
     StyleSheet,
     Navigator,
@@ -14,18 +14,22 @@ import React,{
 } from 'react-native';
 
 export default class JobDetail extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {job: null};
+        console.log("0.JobDetail-constructor(props)")
     }
 
     componentWillMount() {
+        console.log("3.JobDetail-componentWillMount()")
+
         if (React.Platform.OS === 'android') {
             React.BackAndroid.addEventListener('hardwareBackPress', ()=>this._pressButton());
         }
     }
 
     componentWillUnmount() {
+        console.log("10.JobDetail-componentWillUnmount()")
         if (React.Platform.OS === 'android') {
             React.BackAndroid.removeEventListener('hardwareBackPress', ()=>this._pressButton());
         }
@@ -42,10 +46,12 @@ export default class JobDetail extends Component {
     };
 
     render() {
-        let { job } = this.props;
+        console.log("4.JobDetail-render()")
+        let {job} = this.props;
         return (
             <View style={{flex: 1}}>
-                <View style={{padding: 10,marginTop:20,justifyContent: 'center',alignItems: 'center',flexDirection:'row'}}>
+                <View
+                    style={{padding: 10,marginTop:20,justifyContent: 'center',alignItems: 'center',flexDirection:'row'}}>
                     <TouchableOpacity onPress={()=>this._pressButton()}>
                         <Image source={require('../../images/icon_back.png')} style={{width:30,height:30}}/>
                     </TouchableOpacity>

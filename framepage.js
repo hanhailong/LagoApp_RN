@@ -3,8 +3,9 @@
  */
 'use strict';
 
-import React,{
+import React, {
     Component,
+    Dimensions,
     Image,
     View,
     Platform,
@@ -34,10 +35,16 @@ import Message from './views/message';
 import Discover from  './views/discover';
 import RouteMe from './routeme';
 
-export default class MainPage extends Component {
+let tabBarHidden = false;
+
+export default class FramePage extends Component {
     constructor(props) {
         super(props);
-        this.state = {selectedTab: HOME_TAB}
+        this.state = {
+            selectedTab: HOME_TAB,
+            tabBarShow:true
+        };
+        console.log("0.FramePage-constructor")
     }
 
     _renderBadge(badgeCount) {
@@ -87,10 +94,20 @@ export default class MainPage extends Component {
         return (<View style={styles.container}>{renderView}</View>)
     }
 
+    componentWillMount() {
+        console.log("3.FramePage-componentWillMount()");
+    }
+
     render() {
+        console.log("4.FramePage-render");
+        let {tabBarShow} = this.state;
+        console.log(tabBarShow);
         return (
             <View style={styles.container}>
-                <TabNavigator hidesTabTouch={true} tabBarStyle={styles.tabNav}>
+                <TabNavigator
+                    hidesTabTouch={false}
+                    sceneStyle={{paddingBottom: 0}}
+                    tabBarStyle={tabBarShow ? styles.tabNav : styles.tabNavHide}>
                     {this._renderTabItem(HOME_NORMAL, HOME_PRESS, HOME_TAB, '首页', 0, this._createChildView(HOME_TAB))}
                     {this._renderTabItem(MESSAGE_NORMAL, MESSAGE_PRESS, MESSAGE_TAB, '消息', 1, this._createChildView(MESSAGE_TAB))}
                     {this._renderTabItem(DISCOVER_NORMAL, DISCOVER_PRESS, DISCOVER_TAB, '发现', 0, this._createChildView(DISCOVER_TAB))}
@@ -98,6 +115,32 @@ export default class MainPage extends Component {
                 </TabNavigator>
             </View>
         )
+    }
+
+    componentDidMount() {
+        console.log("5.FramePage-componentDidMount()");
+    }
+
+    componentWillReceiveProps() {
+        console.log("6.FramePage-componentWillReceiveProps()");
+    }
+
+    shouldComponentUpdate() {
+        console.log("7.FramePage-shouldComponentUpdate()");
+        return false;
+    }
+
+    componentWillUpdate() {
+        console.log("8.FramePage-componentWillUpdate");
+    }
+
+    componentDidUpdate() {
+        console.log("9.FramePage-componentDidUpdate");
+    }
+
+    componentWillUnmount() {
+        console.log("10.FramePage-componentWillUnmount");
+        //tabBarHidden = true;
     }
 }
 
@@ -111,6 +154,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderTopWidth: 0.5,
         borderTopColor: '#E8E8E8'
+    },
+    tabNavHide: {
+        position: 'absolute',
+        top: Dimensions.get('window').height,
+        height: 0
     },
     selectedTitleStyle: {
         color: '#11A984'
