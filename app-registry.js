@@ -19,7 +19,7 @@ class LagouApp extends Component {
             <Navigator
                 initialRoute={{ name: defaultName, component: defaultComponent }}
                 configureScene={(route) => {
-                    return Navigator.SceneConfigs.HorizontalSwipeJumpFromRight;
+                    return Navigator.SceneConfigs.PushFromRight;
                 }}
                 renderScene={(route, navigator) => {
                     let Component = route.component;

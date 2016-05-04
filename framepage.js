@@ -42,7 +42,7 @@ export default class FramePage extends Component {
         super(props);
         this.state = {
             selectedTab: HOME_TAB,
-            tabBarShow:true
+            tabBarShow:true,
         };
         console.log("0.FramePage-constructor")
     }
@@ -73,11 +73,17 @@ export default class FramePage extends Component {
         );
     }
 
+    //刷新整个视图view
+    refreshWholeView(tag){
+
+    }
+
     _createChildView(tag) {
         let renderView;
         switch (tag) {
             case HOME_TAB:
                 renderView = <RouteHome />;
+                // renderView = <RouteHome />;
                 break;
             case MESSAGE_TAB:
                 renderView = <Message />;
@@ -111,7 +117,7 @@ export default class FramePage extends Component {
                     {this._renderTabItem(HOME_NORMAL, HOME_PRESS, HOME_TAB, '首页', 0, this._createChildView(HOME_TAB))}
                     {this._renderTabItem(MESSAGE_NORMAL, MESSAGE_PRESS, MESSAGE_TAB, '消息', 1, this._createChildView(MESSAGE_TAB))}
                     {this._renderTabItem(DISCOVER_NORMAL, DISCOVER_PRESS, DISCOVER_TAB, '发现', 0, this._createChildView(DISCOVER_TAB))}
-                    {this._renderTabItem(ME_NORMAL, ME_PRESS, ME_TAB, '我的', 0, this._createChildView(ME_TAB))}
+                    {this._renderTabItem(ME_NORMAL, ME_PRESS, ME_TAB, '我的', 1, this._createChildView(ME_TAB))}
                 </TabNavigator>
             </View>
         )
@@ -127,7 +133,7 @@ export default class FramePage extends Component {
 
     shouldComponentUpdate() {
         console.log("7.FramePage-shouldComponentUpdate()");
-        return false;
+        return true;
     }
 
     componentWillUpdate() {
